@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Meridian</title>
+	<% if ENV['FONTAWESOME_URL'].to_s.length > 0 %>
+		<script src="<%= ENV['FONTAWESOME_URL'] %>" crossorigin="anonymous"></script>
+	<% end %>
+</head>
+<body>
+
+<p>
+<form method="GET">
+	<input type="search" name="q" size="30" value="<%= @q %>">
+</form>
+
+<% for place in @places %>
+	<p><i class="fa-solid fa-<%= place[:icon] %>"></i> <%= place[:name] %>
+<% end %>
+
+</body>
+</html>

@@ -1,26 +1,18 @@
 Bundler.require
 
-rom = ROM.container(:sql, ENV["DATABASE_URL"]) do |config|
-	config.relation(:places) do
-		schema(infer: true) do
-			attribute :pt, ROM::Types::String
-		end
-		auto_struct true
-	end
-end
-
-class Place < ROM::Repository[:places]
-	def query(conditions)
-		return places.where(conditions).to_a
-	end
-	
-	def add(fields)
-		places.insert([ fields ])
-	end
-end
-
-db = Place.new(rom)
+db = Sequel.connect(ENV["DATABASE_URL"])
 
 get "/" do
-	return "Hello world."
+	@q = params[:q].to_s
+	
+	if @q.length > 0
+		pieces = @q.split(",")
+		lat = pieces.first.strip.to_f
+		long = pieces.last.strip.to_f
+		@places = db.fetch("SELECT * FROM places LIMIT 10")
+	else
+		@places = []
+	end
+	
+	erb :index
 end
