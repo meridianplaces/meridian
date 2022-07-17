@@ -15,6 +15,7 @@ class PlacesFilter < Nokogiri::XML::SAX::Document
 	attr_accessor :longitude
 	attr_accessor :name
 	attr_accessor :icon
+	attr_accessor :tags
 	
 	def start_document
 	end
@@ -26,29 +27,39 @@ class PlacesFilter < Nokogiri::XML::SAX::Document
 			self.latitude = attrs["lat"]
 			self.longitude = attrs["lon"]
 			self.name = ""
-			self.icon = ""			
+			self.icon = ""	
+			self.tags = []		
 		elsif element_name == "tag"
-			# loop through our tag keys in order
-			for tag_k in TAG_KEYS
-				# see if we have a found on the current tag
-				k = attrs["k"]
-				v = attrs["v"]
-				if k == "name"
-					self.name = v
-				elsif !ICONS[tag_k][v].nil?
-					if icon.length == 0
-						self.icon = ICONS[tag_k][v]
-					end
-				end
-			end			
+			# just gather tag attributes here
+			self.tags << attrs
 		end
 	end
 
 	def end_element(element_name)
 		if element_name == "node"
+			# check for our keys in priority order
+			for tag_k in TAG_KEYS
+				# loop through found tags
+				for attrs in self.tags
+					k = attrs["k"]
+					v = attrs["v"]
+	
+					if k == "name"
+						self.name = v
+					elsif k == tag_k
+						# cuisine sometimes has multiple ;-separated values
+						v = v.split(";").first
+						if !ICONS[k][v].nil?
+							if self.icon.length == 0
+								self.icon = ICONS[k][v]
+							end
+						end
+					end
+				end
+			end
+			
 			if self.name.length > 0
 				if self.icon.length > 0
-#					puts "#{self.osm_id}: #{self.latitude}, #{self.longitude}: #{self.name} (icon: #{self.icon})"
 					s = "INSERT INTO places (osm_id, osm_type, name, latitude, longitude, pt, type, icon) VALUES ("
 					s += "#{self.osm_id}, 'node', \"#{self.name}\", #{self.latitude}, #{self.longitude}, ST_GeomFromText('POINT(#{self.longitude} #{self.latitude})'), '', '#{self.icon}'"
 					s += ");"
