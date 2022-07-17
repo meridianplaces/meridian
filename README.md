@@ -8,7 +8,7 @@ Meridian works by loading a dump of OpenStreetMap places into MySQL. You can dow
 
 Example usage:
 
-`$ ruby import.rb > places.sql`  
+`$ bundle exec ruby import.rb austin.xml > places.sql`  
 `$ mysqladmin -u root -p create meridian_dev`  
 `$ mysql -u root -p meridian_dev < places.sql`  
 
