@@ -16,7 +16,8 @@
 		"chicken": "drumstick",
 		"chinese": "bowl-chopsticks",
 		"barbecue": "meat",
-		"sushi": "sushi-roll"
+		"sushi": "sushi-roll",
+		"donut": "donut"
 	},
 	"amenity": {
 		"restaurant": "utensils",
