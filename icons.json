@@ -1,0 +1,80 @@
+{
+	"sport": {
+		"baseball": "baseball",
+		"basketball": "basketball",
+		"tennis": "tennis-ball",
+		"swimming": "person-swimming"
+	},
+	"cuisine": {
+		"coffee_shop": "mug",
+		"fast_food": "burger",
+		"mexican": "taco",
+		"tex-mex": "taco",
+		"sandwich": "sandwich",
+		"pizza": "pizza-slice",
+		"gyros": "flatbread-stuffed",
+		"chicken": "drumstick",
+		"chinese": "bowl-chopsticks",
+		"barbecue": "meat",
+		"sushi": "sushi-roll"
+	},
+	"amenity": {
+		"restaurant": "utensils",
+		"cafe": "utensils",
+		"fast_food": "burger",
+		"bank": "building-columns",
+		"pharmacy": "prescription-bottle-medical",
+		"school": "school",
+		"cinema": "film",
+		"fuel": "gas-pump",
+		"bar": "whiskey-glass",
+		"pub": "beer-mug",
+		"theatre": "masks-theater",
+		"conference_centre": "building",
+		"bus_station": "bus",
+		"place_of_worship": "place-of-worship",
+		"clinic": "house-medical"
+	},
+	"leisure": {
+		"park": "bench-tree",
+		"fitness_center": "dumbbell",
+		"marina": "sailboat",
+		"golf_course": "golf-ball-tee",
+		"playground": "bench-tree"
+	},
+	"natural": {
+		"beach": "umbrella-beach"
+	},
+	"bridge": {
+		"yes": "bridge"
+	},
+	"train": {
+		"yes": "train"
+	},
+	"tourism": {
+		"hotel": "hotel",
+		"museum": "building-columns",
+		"caravan_site": "caravan-simple"
+	},
+	"shop": {
+		"supermarket": "cart-shopping",
+		"alcohol": "wine-glass",
+		"car_repair": "car-wrench",
+		"travel_agency": "map",
+		"books": "book-blank",
+		"optician": "glasses",
+		"musical_instrument": "music",
+		"pet": "paw",
+		"hairdresser": "scissors",
+		"coffee": "mug"
+	},
+	"aerodrome": {
+		"international": "plane"
+	},
+	"aeroway": {
+		"aerodrome": "plane"
+	},
+	"highway": {
+		"trailhead": "person-hiking"
+	}
+}
