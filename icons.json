@@ -34,7 +34,9 @@
 		"conference_centre": "building",
 		"bus_station": "bus",
 		"place_of_worship": "place-of-worship",
-		"clinic": "house-medical"
+		"clinic": "house-medical",
+		"fire_station": "fire",
+		"fountain": "droplet"
 	},
 	"leisure": {
 		"park": "bench-tree",
@@ -77,5 +79,8 @@
 	},
 	"highway": {
 		"trailhead": "person-hiking"
+	},
+	"historic": {
+		"memorial": "monument"
 	}
 }
