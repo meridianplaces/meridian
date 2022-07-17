@@ -8,9 +8,9 @@ Meridian works by loading a dump of OpenStreetMap places into MySQL. You can dow
 
 Example usage:
 
-`$ ruby import.rb > places.sql`
-`$ mysqladmin -u root -p create meridian_dev`
-`$ mysql -u root -p meridian_dev < places.sql`
+`$ ruby import.rb > places.sql`  
+`$ mysqladmin -u root -p create meridian_dev`  
+`$ mysql -u root -p meridian_dev < places.sql`  
 
 To configure the web app, create a .env file with `DATABASE_URL=mysql2://...` using your database name and credentials. Run the web app with:
 
