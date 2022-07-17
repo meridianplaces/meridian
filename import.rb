@@ -2,7 +2,7 @@ require "rubygems"
 require "nokogiri"
 require "json"
 
-FILES = [ "austin.xml" ]
+FILES = [ ARGV[0] ]
 ICONS = JSON.parse(IO.read("icons.json"))
 
 # the key order matters
@@ -50,7 +50,7 @@ class PlacesFilter < Nokogiri::XML::SAX::Document
 				if self.icon.length > 0
 #					puts "#{self.osm_id}: #{self.latitude}, #{self.longitude}: #{self.name} (icon: #{self.icon})"
 					s = "INSERT INTO places (osm_id, osm_type, name, latitude, longitude, pt, type, icon) VALUES ("
-					s += "#{self.osm_id}, 'node', \"#{self.name}\", #{self.latitude}, #{self.longitude}, ST_GeomFromText('POINT(#{self.latitude} #{self.longitude})'), '', '#{self.icon}'"
+					s += "#{self.osm_id}, 'node', \"#{self.name}\", #{self.latitude}, #{self.longitude}, ST_GeomFromText('POINT(#{self.longitude} #{self.latitude})'), '', '#{self.icon}'"
 					s += ");"
 					puts s
 				else
