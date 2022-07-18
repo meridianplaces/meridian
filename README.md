@@ -2,7 +2,7 @@
 
 https://latl.ong/
 
-Meridian works by loading a dump of OpenStreetMap places into MySQL. You can download global or region data from various OpenStreetMap mirrors. If downloading in .pbf format, use the tool `osmium` to extract data into .xml.
+Meridian works by importing the OpenStreetMap places dataset into MySQL. You can download global or region data from various OpenStreetMap mirrors. If downloading in .pbf format, use the tool `osmium` to extract data into .xml.
 
 For example, given a file `north-america-latest.osm.pbf`, to extract roughly the Austin, Texas area to a new file:
 
