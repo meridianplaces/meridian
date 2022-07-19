@@ -3,7 +3,9 @@
 		"baseball": "baseball",
 		"basketball": "basketball",
 		"tennis": "tennis-ball",
-		"swimming": "person-swimming"
+		"swimming": "person-swimming",
+		"american_football": "football",
+		"soccer": "futbol"
 	},
 	"cuisine": {
 		"coffee_shop": "mug",
@@ -42,7 +44,8 @@
 		"post_office": "envelopes-bulk",
 		"arts_centre": "palette",
 		"courthouse": "building-columns",
-		"grave_yard": "tombstone-blank"
+		"grave_yard": "tombstone-blank",
+		"boat_rental": "sailboat"
 	},
 	"leisure": {
 		"park": "bench-tree",
@@ -59,6 +62,9 @@
 	},
 	"train": {
 		"yes": "train"
+	},
+	"railway": {
+		"station": "train"
 	},
 	"tourism": {
 		"hotel": "hotel",
