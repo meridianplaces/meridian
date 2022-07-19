@@ -36,7 +36,13 @@
 		"place_of_worship": "place-of-worship",
 		"clinic": "house-medical",
 		"fire_station": "fire",
-		"fountain": "droplet"
+		"fountain": "droplet",
+		"dentist": "tooth",
+		"police": "user-police",
+		"post_office": "envelopes-bulk",
+		"arts_centre": "palette",
+		"courthouse": "building-columns",
+		"grave_yard": "tombstone-blank"
 	},
 	"leisure": {
 		"park": "bench-tree",
@@ -69,7 +75,10 @@
 		"musical_instrument": "music",
 		"pet": "paw",
 		"hairdresser": "scissors",
-		"coffee": "mug"
+		"coffee": "mug",
+		"copyshop": "print",
+		"car": "car",
+		"hardware": "hammer"
 	},
 	"aerodrome": {
 		"international": "plane"
