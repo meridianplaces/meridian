@@ -9,7 +9,7 @@ get "/" do
 		pieces = @q.split(",")
 		lat = pieces.first.strip.to_f
 		long = pieces.last.strip.to_f
-		sql = "SELECT id, name, type, icon, ST_AsText(pt), ST_Distance_Sphere(pt, ST_GeomFromText('POINT(#{long} #{lat})')) AS meters FROM places HAVING meters < 100000 ORDER BY meters LIMIT 50"
+		sql = "SELECT id, name, type, icon_fontawesome, ST_AsText(pt), ST_Distance_Sphere(pt, ST_GeomFromText('POINT(#{long} #{lat})')) AS meters FROM places HAVING meters < 100000 ORDER BY meters LIMIT 50"
 		@places = db.fetch(sql)
 	else
 		@places = []
@@ -26,7 +26,7 @@ get "/places/nearby" do
 	meters = params[:meters] || 10000
 	count = params[:count] || 50
 	
-	sql = "SELECT id, osm_id, name, type, icon, latitude, longitude, ST_Distance_Sphere(pt, ST_GeomFromText('POINT(#{long} #{lat})')) AS meters FROM places HAVING meters < #{meters.to_i} ORDER BY meters LIMIT #{count.to_i}"
+	sql = "SELECT id, osm_id, name, type, icon_carto, icon_fontawesome, latitude, longitude, ST_Distance_Sphere(pt, ST_GeomFromText('POINT(#{long} #{lat})')) AS meters FROM places HAVING meters < #{meters.to_i} ORDER BY meters LIMIT #{count.to_i}"
 	places = db.fetch(sql)
 	
 	results = []
@@ -36,7 +36,8 @@ get "/places/nearby" do
 			osm_id: place[:osm_id],
 			name: place[:name],
 			type: place[:type],
-			icon: place[:icon],
+			icon_carto: place[:icon_carto],
+			icon_fontawesome: place[:icon_fontawesome],
 			latitude: place[:latitude],
 			longitude: place[:longitude]
 		}

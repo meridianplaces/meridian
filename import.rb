@@ -60,7 +60,7 @@ class PlacesFilter < Nokogiri::XML::SAX::Document
 			
 			if self.name.length > 0
 				if self.icon.length > 0
-					s = "INSERT INTO places (osm_id, osm_type, name, latitude, longitude, pt, type, icon) VALUES ("
+					s = "INSERT INTO places (osm_id, osm_type, name, latitude, longitude, pt, type, icon_fontawesome) VALUES ("
 					s += "#{self.osm_id}, 'node', \"#{self.name}\", #{self.latitude}, #{self.longitude}, ST_GeomFromText('POINT(#{self.longitude} #{self.latitude})'), '', '#{self.icon}'"
 					s += ");"
 					puts s
