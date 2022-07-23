@@ -45,3 +45,20 @@ get "/places/nearby" do
 	
 	return JSON.pretty_generate(results)
 end
+
+post "/places" do
+	content_type :json
+
+	name = params[:name].to_s
+	type = params[:type].to_s
+	lat = params[:latitude].to_f
+	long = params[:longitude].to_f
+	
+	if name.length > 0	
+		insert_ds = db["INSERT INTO places (osm_id, osm_type, name, type, latitude, longitude, pt) VALUES (?, ?, ?, ?, ?, ?, ST_GeomFromText('POINT(#{long} #{lat})'))", 0, "", name, type, lat, long]
+		insert_ds.insert
+	end
+	
+	info = {}
+	return info.to_json
+end
