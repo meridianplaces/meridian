@@ -1,0 +1,82 @@
+{
+	"cuisine": {
+		"*": "restaurant"
+	},
+	"amenity": {
+		"restaurant": "restaurant",
+		"cafe": "restaurant",
+		"fast_food": "restaurant",
+		"bank": "bank",
+		"pharmacy": "pharmacy",
+		"school": "school",
+		"cinema": "cinema",
+		"fuel": "fuel",
+		"bar": "bar",
+		"pub": "pub",
+		"theatre": "theatre",
+		"conference_centre": "conference_centre",
+		"bus_station": "bus_station",
+		"place_of_worship": "place_of_worship",
+		"clinic": "clinic",
+		"fire_station": "fire_station",
+		"fountain": "fountain",
+		"dentist": "dentist",
+		"police": "police",
+		"post_office": "post_office",
+		"arts_centre": "arts_centre",
+		"courthouse": "courthouse",
+		"grave_yard": "grave_yard",
+		"boat_rental": "boat_rental"
+	},
+	"leisure": {
+		"park": "park",
+		"fitness_center": "fitness_center",
+		"marina": "marina",
+		"golf_course": "golf_course",
+		"playground": "playground"
+	},
+	"natural": {
+		"beach": "beach"
+	},
+	"bridge": {
+		"yes": "bridge"
+	},
+	"train": {
+		"yes": "train"
+	},
+	"railway": {
+		"station": "train"
+	},
+	"tourism": {
+		"hotel": "hotel",
+		"museum": "museum",
+		"caravan_site": "caravan_site"
+	},
+	"shop": {
+		"supermarket": "supermarket",
+		"alcohol": "alcohol",
+		"car_repair": "car_repair",
+		"travel_agency": "travel_agency",
+		"books": "books",
+		"optician": "optician",
+		"musical_instrument": "musical_instrument",
+		"pet": "pet",
+		"hairdresser": "hairdresser",
+		"coffee": "coffee",
+		"copyshop": "copyshop",
+		"car": "car",
+		"hardware": "hardware"
+	},
+	"aerodrome": {
+		"international": "airport"
+	},
+	"aeroway": {
+		"aerodrome": "airport"
+	},
+	"highway": {
+		"trailhead": "trailhead"
+	},
+	"historic": {
+		"memorial": "memorial"
+	}
+}

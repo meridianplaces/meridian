@@ -3,7 +3,8 @@ require "nokogiri"
 require "json"
 
 FILES = [ ARGV[0] ]
-ICONS = JSON.parse(IO.read("icons.json"))
+ICONS = JSON.parse(IO.read("config/icons.json"))
+TYPES = JSON.parse(IO.read("config/types.json"))
 
 # the key order matters
 # more specific categories are hit first, otherwise it can fall through to more generic icons
@@ -14,7 +15,9 @@ class PlacesFilter < Nokogiri::XML::SAX::Document
 	attr_accessor :latitude
 	attr_accessor :longitude
 	attr_accessor :name
-	attr_accessor :icon
+	attr_accessor :type
+	attr_accessor :icon_carto
+	attr_accessor :icon_fontawesome
 	attr_accessor :tags
 	
 	def start_document
@@ -27,7 +30,9 @@ class PlacesFilter < Nokogiri::XML::SAX::Document
 			self.latitude = attrs["lat"]
 			self.longitude = attrs["lon"]
 			self.name = ""
-			self.icon = ""	
+			self.type = ""	
+			self.icon_carto = ""	
+			self.icon_fontawesome = ""	
 			self.tags = []		
 		elsif element_name == "tag"
 			# just gather tag attributes here
@@ -47,11 +52,24 @@ class PlacesFilter < Nokogiri::XML::SAX::Document
 					if k == "name"
 						self.name = v
 					elsif k == tag_k
-						# cuisine sometimes has multiple ;-separated values
-						v = v.split(";").first
-						if !ICONS[k][v].nil?
-							if self.icon.length == 0
-								self.icon = ICONS[k][v]
+						# try to find an icon
+						if self.icon_carto.length == 0
+							# cuisine sometimes has multiple ;-separated values
+							v = v.split(";").first
+							if !ICONS[k][v].nil?
+								self.icon_carto = "#{k}/#{v}"
+								self.icon_fontawesome = ICONS[k][v]
+							end
+						end
+
+						# also check types
+						if self.type.length == 0
+							if !TYPES[k].nil?
+								if !TYPES[k][v].nil?
+									self.type = v
+								elsif !TYPES[k]["*"].nil?
+									self.type = TYPES[k]["*"]
+								end
 							end
 						end
 					end
@@ -59,9 +77,9 @@ class PlacesFilter < Nokogiri::XML::SAX::Document
 			end
 			
 			if self.name.length > 0
-				if self.icon.length > 0
-					s = "INSERT INTO places (osm_id, osm_type, name, latitude, longitude, pt, type, icon_fontawesome) VALUES ("
-					s += "#{self.osm_id}, 'node', \"#{self.name}\", #{self.latitude}, #{self.longitude}, ST_GeomFromText('POINT(#{self.longitude} #{self.latitude})'), '', '#{self.icon}'"
+				if self.icon_carto.length > 0
+					s = "INSERT INTO places (osm_id, osm_type, name, latitude, longitude, pt, type, icon_carto, icon_fontawesome) VALUES ("
+					s += "#{self.osm_id}, 'node', \"#{self.name}\", #{self.latitude}, #{self.longitude}, ST_GeomFromText('POINT(#{self.longitude} #{self.latitude})'), '#{self.type}', '#{self.icon_carto}', '#{self.icon_fontawesome}'"
 					s += ");"
 					puts s
 				else
