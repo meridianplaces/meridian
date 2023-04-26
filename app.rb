@@ -70,6 +70,12 @@ get "/places/nearby" do
 	
 	results = []
 	for place in places
+		tags = [
+			place[:type], 
+			place[:icon_fontawesome],
+			place[:icon_carto].split("/").first,
+			place[:icon_carto].split("/").last
+		]
 		results << {
 			id: place[:id],
 			osm_id: place[:osm_id],
@@ -78,7 +84,8 @@ get "/places/nearby" do
 			icon_carto: place[:icon_carto],
 			icon_fontawesome: place[:icon_fontawesome],
 			latitude: place[:latitude],
-			longitude: place[:longitude]
+			longitude: place[:longitude],
+			tags: tags.uniq
 		}
 	end
 	
